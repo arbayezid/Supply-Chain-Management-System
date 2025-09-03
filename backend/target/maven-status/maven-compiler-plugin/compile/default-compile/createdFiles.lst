@@ -1,0 +1,8 @@
+com\supplychain\controller\HelloController.class
+com\supplychain\controller\ItemController.class
+com\supplychain\service\ItemService.class
+com\supplychain\SupplyChainApplication.class
+com\supplychain\repository\ItemRepository.class
+com\supplychain\service\impl\ItemServiceImpl.class
+com\supplychain\config\CorsConfig.class
+com\supplychain\model\Item.class
