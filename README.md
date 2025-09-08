@@ -1,131 +1,277 @@
 # Supply Chain Management System
 
-A full-stack web application built with React frontend and Spring Boot backend, connected to MongoDB.
+A comprehensive, modern web application for managing supply chain operations with advanced features for inventory, orders, suppliers, and analytics.
 
-## Prerequisites
+## 🚀 Features
 
-### Frontend Requirements
-- Node.js (v16 or higher)
-- npm or yarn
+### Core Modules
 
-### Backend Requirements
-- Java JDK 17 or higher
-- Maven 3.6 or higher
-- MongoDB (local or cloud)
+#### 1. **Dashboard**
+- Real-time supply chain overview
+- Key performance indicators (KPIs)
+- Interactive charts and visualizations
+- Quick access to all modules
+- Recent activity alerts and notifications
 
-### Database Setup
-1. **Local MongoDB:**
-   - Install MongoDB Community Server
-   - Start MongoDB service
-   - Create database: `supply_chain_db`
+#### 2. **Inventory Management**
+- Stock level tracking and monitoring
+- Low stock alerts and notifications
+- Category-based organization
+- SKU management
+- Stock adjustments and transfers
+- Inventory value calculations
+- Multi-location support
 
-2. **Cloud MongoDB (MongoDB Atlas):**
-   - Create account at [MongoDB Atlas](https://www.mongodb.com/atlas)
-   - Create a cluster
-   - Get connection string
-   - Update `application.properties` with your connection string
+#### 3. **Order Management**
+- Complete order lifecycle management
+- Customer order processing
+- Order status tracking (Pending, Processing, Shipped, Delivered)
+- Payment status monitoring
+- Order history and analytics
+- Multi-item order support
 
-## Project Structure
+#### 4. **Supplier Management**
+- Vendor relationship management
+- Performance tracking and ratings
+- Contract management
+- Payment terms tracking
+- Supplier evaluation metrics
+- Performance analytics
 
-```
-supply-chain-management-system/
-├── frontend/                 # React application
-│   ├── public/
-│   ├── src/
-│   │   ├── components/      # Reusable components
-│   │   ├── pages/          # Page components
-│   │   ├── services/       # API services
-│   │   ├── utils/          # Utility functions
-│   │   └── App.js          # Main App component
-│   ├── package.json
-│   └── README.md
-├── backend/                  # Spring Boot application
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/
-│   │   │   │   └── com/supplychain/
-│   │   │   │       ├── controller/
-│   │   │   │       ├── model/
-│   │   │   │       ├── repository/
-│   │   │   │       ├── service/
-│   │   │   │       └── SupplyChainApplication.java
-│   │   │   └── resources/
-│   │   │       └── application.properties
-│   │   └── test/
-│   └── pom.xml
-└── README.md
-```
+#### 5. **Customer Management**
+- Customer database and profiles
+- Order history tracking
+- Customer segmentation
+- Communication management
 
-## Quick Start
+#### 6. **Shipment & Logistics**
+- Real-time shipment tracking
+- Delivery status updates
+- Shipping rate management
+- Route optimization
+- Carrier management
 
-### 1. Start Backend
-```bash
-cd backend
-mvn spring-boot:run
-```
-Backend will run on: http://localhost:8080
+#### 7. **Financial Management**
+- Revenue tracking and analytics
+- Expense management
+- Invoice generation
+- Payment processing
+- Financial reporting
 
-### 2. Start Frontend
-```bash
-cd frontend
-npm install
-npm start
-```
-Frontend will run on: http://localhost:3000
+#### 8. **Analytics & Reports**
+- Performance dashboards
+- Custom report generation
+- Data visualization
+- Trend analysis
+- Export capabilities
 
-### 3. Test API
-- Backend health check: http://localhost:8080/api/hello
-- Frontend: http://localhost:3000
-
-## API Endpoints
-
-- `GET /api/hello` - Health check endpoint
-- `GET /api/items` - Get all items
-- `POST /api/items` - Create new item
-- `GET /api/items/{id}` - Get item by ID
-- `PUT /api/items/{id}` - Update item
-- `DELETE /api/items/{id}` - Delete item
-
-## Technologies Used
+## 🛠️ Technology Stack
 
 ### Frontend
-- React 18
-- React Router 6
-- Axios
-- CSS3
+- **React 18** - Modern React with hooks and functional components
+- **Material-UI (MUI)** - Professional UI component library
+- **React Router** - Client-side routing
+- **ApexCharts** - Interactive charts and visualizations
+- **React Hook Form** - Form handling and validation
 
 ### Backend
-- Spring Boot 3.2
-- Spring Data MongoDB
-- Maven
-- Java 17
+- **Node.js** - Server-side JavaScript runtime
+- **Express.js** - Web application framework
+- **MongoDB** - NoSQL database
+- **Mongoose** - MongoDB object modeling
+- **JWT** - Authentication and authorization
 
-### Database
-- MongoDB 6.0+
+### Development Tools
+- **ESLint** - Code linting and quality
+- **Prettier** - Code formatting
+- **Git** - Version control
 
-## Development
+## 📁 Project Structure
 
-### Frontend Development
-- Run `npm start` for development server
-- Run `npm run build` for production build
-- Run `npm test` for running tests
+```
+supply-chain-management/
+├── frontend/                 # React frontend application
+│   ├── src/
+│   │   ├── components/      # Reusable UI components
+│   │   ├── pages/          # Main application pages
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── utils/          # Utility functions
+│   │   └── App.js          # Main application component
+│   ├── public/             # Static assets
+│   └── package.json        # Frontend dependencies
+├── backend/                 # Node.js backend server
+│   ├── src/
+│   │   ├── controllers/    # Request handlers
+│   │   ├── models/         # Database models
+│   │   ├── routes/         # API endpoints
+│   │   ├── middleware/     # Custom middleware
+│   │   └── server.js       # Server entry point
+│   └── package.json        # Backend dependencies
+└── README.md               # Project documentation
+```
 
-### Backend Development
-- Run `mvn spring-boot:run` for development
-- Run `mvn clean install` for building
-- Run `mvn test` for running tests
+## 🚀 Getting Started
 
-## Troubleshooting
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (v5 or higher)
+- npm or yarn package manager
 
-1. **MongoDB Connection Issues:**
-   - Check if MongoDB is running
-   - Verify connection string in `application.properties`
-   - Check network connectivity for cloud MongoDB
+### Installation
 
-2. **CORS Issues:**
-   - Backend CORS is configured for `http://localhost:3000`
-   - Update CORS configuration if using different ports
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/supply-chain-management.git
+   cd supply-chain-management
+   ```
 
-3. **Port Conflicts:**
-   - Backend: Change port in `application.properties`
-   - Frontend: Change port in `package.json` scripts
+2. **Install frontend dependencies**
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+3. **Install backend dependencies**
+   ```bash
+   cd ../backend
+   npm install
+   ```
+
+4. **Environment Setup**
+   Create `.env` files in both frontend and backend directories:
+   
+   **Backend (.env)**
+   ```env
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/supply-chain
+   JWT_SECRET=your-secret-key
+   NODE_ENV=development
+   ```
+   
+   **Frontend (.env)**
+   ```env
+   REACT_APP_API_URL=http://localhost:5000/api
+   ```
+
+5. **Start the application**
+   
+   **Backend (Terminal 1)**
+   ```bash
+   cd backend
+   npm run dev
+   ```
+   
+   **Frontend (Terminal 2)**
+   ```bash
+   cd frontend
+   npm start
+   ```
+
+6. **Access the application**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5000
+
+## 📊 Key Features in Detail
+
+### Dashboard Analytics
+- **Real-time Metrics**: Live updates of inventory levels, order statuses, and financial data
+- **Interactive Charts**: Visual representation of supply chain performance
+- **Quick Actions**: One-click access to common tasks
+- **Alert System**: Proactive notifications for critical issues
+
+### Inventory Management
+- **Smart Alerts**: Automatic notifications for low stock and out-of-stock items
+- **Category Management**: Organized product classification
+- **Stock Tracking**: Real-time inventory levels across locations
+- **Value Analytics**: Total inventory value and cost analysis
+
+### Order Processing
+- **Workflow Management**: Streamlined order processing pipeline
+- **Status Tracking**: Real-time order status updates
+- **Customer Communication**: Automated notifications and updates
+- **Payment Integration**: Multiple payment method support
+
+### Supplier Performance
+- **Rating System**: Comprehensive supplier evaluation
+- **Performance Metrics**: On-time delivery, quality scores, cost effectiveness
+- **Contract Management**: Contract lifecycle tracking
+- **Analytics**: Supplier performance trends and insights
+
+## 🔧 Configuration
+
+### Database Configuration
+The system uses MongoDB with the following collections:
+- `users` - User accounts and authentication
+- `inventory` - Product and stock information
+- `orders` - Customer orders and transactions
+- `suppliers` - Vendor information and performance
+- `customers` - Customer profiles and history
+- `shipments` - Shipping and logistics data
+
+### API Endpoints
+- `GET /api/dashboard` - Dashboard data and metrics
+- `GET /api/inventory` - Inventory management
+- `GET /api/orders` - Order management
+- `GET /api/suppliers` - Supplier management
+- `GET /api/customers` - Customer management
+- `GET /api/shipments` - Shipment tracking
+
+## 🚀 Deployment
+
+### Production Build
+```bash
+# Frontend
+cd frontend
+npm run build
+
+# Backend
+cd backend
+npm run build
+```
+
+### Environment Variables
+Set production environment variables:
+```env
+NODE_ENV=production
+MONGODB_URI=your-production-mongodb-uri
+JWT_SECRET=your-production-secret
+PORT=5000
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+For support and questions:
+- Create an issue in the GitHub repository
+- Contact the development team
+- Check the documentation wiki
+
+## 🔮 Roadmap
+
+### Upcoming Features
+- **AI-Powered Analytics**: Machine learning for demand forecasting
+- **Mobile Application**: React Native mobile app
+- **Advanced Reporting**: Custom report builder
+- **Integration APIs**: Third-party system integrations
+- **Real-time Notifications**: Push notifications and alerts
+- **Advanced Security**: Role-based access control and audit logs
+
+### Version History
+- **v2.0.0** - Enhanced dashboard and analytics
+- **v1.5.0** - Supplier performance tracking
+- **v1.0.0** - Core inventory and order management
+
+---
+
+**Built with ❤️ for modern supply chain operations**
