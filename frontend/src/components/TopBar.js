@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -8,11 +8,21 @@ import {
   useTheme,
   useMediaQuery,
 } from '@mui/material';
+import { Button } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
-const TopBar = ({ onMenuClick, isMobile }) => {
+const TopBar = ({ onMenuClick }) => {
   const theme = useTheme();
   const isMobileView = useMediaQuery(theme.breakpoints.down('md'));
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <AppBar
@@ -48,6 +58,9 @@ const TopBar = ({ onMenuClick, isMobile }) => {
           <Typography variant="body2" color="textSecondary">
             Welcome, Admin
           </Typography>
+          <Button color="inherit" onClick={handleLogout}>
+            Logout
+          </Button>
         </Box>
       </Toolbar>
     </AppBar>
