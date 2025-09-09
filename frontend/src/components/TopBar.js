@@ -50,7 +50,7 @@ const TopBar = ({ onMenuClick }) => {
         
         <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
           <Typography variant="h6" component="div" fontWeight="bold" color="primary">
-            Supply Chain Pro
+            Supply Chain Management System
           </Typography>
         </Box>
 

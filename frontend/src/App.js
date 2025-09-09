@@ -56,7 +56,7 @@ function App() {
             {/* Protected routes */}
             <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/inventory" element={<InventoryPage />} />
+              <Route path="/inventory/overview" element={<InventoryPage />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/revenue" element={<Revenue />} />
