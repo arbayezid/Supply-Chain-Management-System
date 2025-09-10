@@ -28,6 +28,8 @@ import AddCustomer from './pages/AddCustomer';
 import SupplierPerformance from './SupplierPerformance';
 import AddSupplier from './pages/auth/AddSupplier';
 import SupplierList from './pages/auth/SupplierList';
+import RevenueOverview from './RevenueOverview';
+import Expenses from './Expenses';
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -85,10 +87,14 @@ function App() {
               <Route path="/customers/add" element={<AddCustomer />} />
               <Route path="/customers/list" element={<CustomerList />} />
 
-              {/* Customer sub-routes */}
+              {/* Supplier sub-routes */}
               <Route path="/suppliers/performance" element={<SupplierPerformance />} />
               <Route path="/suppliers/add" element={<AddSupplier />} />
               <Route path="/suppliers/list" element={<SupplierList />} />
+
+              {/* Financial sub-routes */}
+              <Route path="/finance/revenue" element={<RevenueOverview />} />
+              <Route path="/finance/expenses" element={<Expenses />} />
             </Route>
           </Routes>
         </Router>
