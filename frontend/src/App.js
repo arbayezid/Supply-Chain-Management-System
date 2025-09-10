@@ -23,6 +23,8 @@ import './App.css';
 import NewOrder from './pages/NewOrder';
 import PendingOrders from './pages/PendingOrders';
 import OrderHistory from './pages/OrderHistory';
+import CustomerList from './pages/CustomerList';
+import AddCustomer from './pages/AddCustomer';
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -75,6 +77,10 @@ function App() {
               <Route path="/orders/pending" element={<PendingOrders />} />
               <Route path="/orders/history" element={<OrderHistory />} />
               <Route path="/inventory/adjustments" element={<StockAdjustments />} />
+
+              {/* Customer sub-routes */}
+              <Route path="/customers/add" element={<AddCustomer />} />
+              <Route path="/customers/list" element={<CustomerList />} />
             </Route>
           </Routes>
         </Router>
