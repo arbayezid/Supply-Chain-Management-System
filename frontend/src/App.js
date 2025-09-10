@@ -20,6 +20,9 @@ import Home from './pages/Home';
 import { AuthProvider } from './AuthContext';
 import ProtectedRoute from './pages/auth/ProtectedRoute';
 import './App.css';
+import NewOrder from './pages/NewOrder';
+import PendingOrders from './pages/PendingOrders';
+import OrderHistory from './pages/OrderHistory';
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -57,7 +60,7 @@ function App() {
             <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/inventory/overview" element={<InventoryPage />} />
-              <Route path="/orders" element={<Orders />} />
+              <Route path="/orders/all" element={<Orders />} />
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/revenue" element={<Revenue />} />
               <Route path="/home" element={<Home />} />
@@ -65,6 +68,12 @@ function App() {
               <Route path="/inventory/add" element={<AddItem />} />
               <Route path="/inventory/categories" element={<Categories />} />
               <Route path="/inventory/alerts" element={<LowStockAlerts />} />
+              <Route path="/inventory/adjustments" element={<StockAdjustments />} />
+
+              {/* Order sub-routes */}
+              <Route path="/orders/new" element={<NewOrder />} />
+              <Route path="/orders/pending" element={<PendingOrders />} />
+              <Route path="/orders/history" element={<OrderHistory />} />
               <Route path="/inventory/adjustments" element={<StockAdjustments />} />
             </Route>
           </Routes>

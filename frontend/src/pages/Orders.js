@@ -42,6 +42,7 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Link,
 } from '@mui/material';
 import {
   Add,
@@ -67,6 +68,7 @@ import {
   TrendingDown,
 } from '@mui/icons-material';
 import ReactApexChart from 'react-apexcharts';
+import { Link as RouterLink } from 'react-router-dom';
 
 const Orders = () => {
   const theme = useTheme();
@@ -314,12 +316,13 @@ const Orders = () => {
           Order Management
         </Typography>
         <Button
+          component={RouterLink}
+          to="/orders/new"
           variant="contained"
           startIcon={<Add />}
-          onClick={handleAddOrder}
           sx={{ borderRadius: 2 }}
         >
-          New Order
+          Add Item
         </Button>
       </Box>
 
