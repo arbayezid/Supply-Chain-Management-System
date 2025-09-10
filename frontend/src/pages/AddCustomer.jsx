@@ -96,4 +96,5 @@ const AddCustomer = ({ onCustomerAdded }) => {
   );
 };
 
+
 export default AddCustomer;
