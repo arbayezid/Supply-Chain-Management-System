@@ -20,7 +20,8 @@ const CustomerList = ({ customers = [], onEdit, onDelete }) => (
         </TableHead>
         <TableBody>
           {customers.length === 0 ? (
-            <TableRow>
+           
+           <TableRow>
               <TableCell colSpan={5} align="center">
                 No customers found
               </TableCell>
