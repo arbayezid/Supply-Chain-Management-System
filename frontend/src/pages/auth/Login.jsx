@@ -9,12 +9,14 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setError("");
   };
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, form.email, form.password);
@@ -41,5 +43,6 @@ const Login = () => {
     </Box>
   );
 };
+
 
 export default Login;
