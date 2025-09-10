@@ -109,7 +109,6 @@ const Sidebar = ({ open, onClose }) => {
       children: [
         { title: 'Customer List', path: '/customers/list' },
         { title: 'Add Customer', path: '/customers/add' },
-        { title: 'Customer Groups', path: '/customers/groups' },
       ]
     },
     {
