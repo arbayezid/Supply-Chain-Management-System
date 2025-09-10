@@ -25,6 +25,9 @@ import PendingOrders from './pages/PendingOrders';
 import OrderHistory from './pages/OrderHistory';
 import CustomerList from './pages/CustomerList';
 import AddCustomer from './pages/AddCustomer';
+import SupplierList from './pages/auth/SupplierList';
+import AddSupplier from './pages/auth/AddSupplier';
+import SupplierPerformance from './pages/auth/SupplierPerformance';
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -81,6 +84,11 @@ function App() {
               {/* Customer sub-routes */}
               <Route path="/customers/add" element={<AddCustomer />} />
               <Route path="/customers/list" element={<CustomerList />} />
+
+              {/* Supplier sub-routes */}
+              <Route path="/suppliers/list" element={<SupplierList />} />
+              <Route path="/suppliers/add" element={<AddSupplier />} />
+              <Route path="/suppliers/performance" element={<SupplierPerformance />} />
             </Route>
           </Routes>
         </Router>
