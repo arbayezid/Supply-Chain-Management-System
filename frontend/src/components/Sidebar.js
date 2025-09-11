@@ -120,7 +120,6 @@ const Sidebar = ({ open, onClose }) => {
         { title: 'Supplier List', path: '/suppliers/list' },
         { title: 'Add Supplier', path: '/suppliers/add' },
         { title: 'Supplier Performance', path: '/suppliers/performance' },
-        { title: 'Contracts', path: '/suppliers/contracts' },
       ]
     },
     {
