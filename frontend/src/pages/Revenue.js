@@ -25,6 +25,7 @@ import {
 } from '@mui/icons-material';
 import ReactApexChart from 'react-apexcharts';
 
+
 const Revenue = () => {
   const theme = useTheme();
   const [revenueData] = useState({
@@ -40,7 +41,7 @@ const Revenue = () => {
     ],
   });
 
-  // Monthly Revenue Chart
+
   const monthlyChartOptions = {
     chart: {
       type: 'area',
@@ -88,6 +89,7 @@ const Revenue = () => {
     },
   ];
 
+  
   // Category Revenue Chart
   const categoryChartOptions = {
     chart: {

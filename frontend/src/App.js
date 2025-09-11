@@ -6,7 +6,6 @@ import theme from './theme';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
-import InventoryPage from './pages/Inventory';
 import Orders from './pages/Orders';
 import Suppliers from './pages/Suppliers';
 import Revenue from './pages/Revenue';
@@ -30,6 +29,7 @@ import AddSupplier from './pages/auth/AddSupplier';
 import SupplierList from './pages/auth/SupplierList';
 import RevenueOverview from './RevenueOverview';
 import Expenses from './Expenses';
+import InventoryPage from './pages/InventoryPage';
 
 const MainLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -59,11 +59,9 @@ function App() {
         <CssBaseline />
         <Router>
           <Routes>
-            {/* Public routes */}
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
 
-            {/* Protected routes */}
             <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
               <Route path="/" element={<Dashboard />} />
               <Route path="/inventory/overview" element={<InventoryPage />} />
@@ -71,28 +69,18 @@ function App() {
               <Route path="/suppliers" element={<Suppliers />} />
               <Route path="/revenue" element={<Revenue />} />
               <Route path="/home" element={<Home />} />
-              {/* Inventory sub-routes */}
               <Route path="/inventory/add" element={<AddItem />} />
               <Route path="/inventory/categories" element={<Categories />} />
               <Route path="/inventory/alerts" element={<LowStockAlerts />} />
               <Route path="/inventory/adjustments" element={<StockAdjustments />} />
-
-              {/* Order sub-routes */}
               <Route path="/orders/new" element={<NewOrder />} />
               <Route path="/orders/pending" element={<PendingOrders />} />
               <Route path="/orders/history" element={<OrderHistory />} />
-              <Route path="/inventory/adjustments" element={<StockAdjustments />} />
-
-              {/* Customer sub-routes */}
               <Route path="/customers/add" element={<AddCustomer />} />
               <Route path="/customers/list" element={<CustomerList />} />
-
-              {/* Supplier sub-routes */}
               <Route path="/suppliers/performance" element={<SupplierPerformance />} />
               <Route path="/suppliers/add" element={<AddSupplier />} />
               <Route path="/suppliers/list" element={<SupplierList />} />
-
-              {/* Financial sub-routes */}
               <Route path="/finance/revenue" element={<RevenueOverview />} />
               <Route path="/finance/expenses" element={<Expenses />} />
             </Route>
