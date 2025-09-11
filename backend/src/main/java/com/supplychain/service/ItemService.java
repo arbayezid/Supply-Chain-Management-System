@@ -2,7 +2,6 @@ package com.supplychain.service;
 
 import com.supplychain.model.Item;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +23,7 @@ public interface ItemService {
     /**
      * Create new item
      */
-    Item createItem(Item item);
-
-    /**
-     * Update existing item
-     */
-    Item updateItem(String id, Item item);
+    Item saveItem(Item item);
 
     /**
      * Delete item by ID
@@ -37,32 +31,12 @@ public interface ItemService {
     void deleteItem(String id);
 
     /**
-     * Find items by name (case-insensitive search)
+     * Get low stock items based on a threshold
      */
-    List<Item> findItemsByName(String name);
+    List<Item> getLowStockItems(int threshold);
 
     /**
-     * Find items by supplier
+     * Get out of stock items
      */
-    List<Item> findItemsBySupplier(String supplier);
-
-    /**
-     * Find items with low stock (quantity < 10)
-     */
-    List<Item> findLowStockItems();
-
-    /**
-     * Find items by price range
-     */
-    List<Item> findItemsByPriceRange(BigDecimal minPrice, BigDecimal maxPrice);
-
-    /**
-     * Update item quantity
-     */
-    Item updateItemQuantity(String id, Integer newQuantity);
-
-    /**
-     * Check if item exists by name and supplier
-     */
-    boolean itemExists(String name, String supplier);
+    List<Item> getOutOfStockItems();
 }
