@@ -1,7 +1,6 @@
 package com.supplychain.service;
 
 import com.supplychain.model.Item;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +20,8 @@ public interface ItemService {
     Optional<Item> getItemById(String id);
 
     /**
-     * Create new item
+
+     * Create or update item
      */
     Item saveItem(Item item);
 

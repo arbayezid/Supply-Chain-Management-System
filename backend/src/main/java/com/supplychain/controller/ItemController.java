@@ -28,17 +28,23 @@ public class ItemController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    
+    @GetMapping("/low-stock")
+    public List<Item> getLowStockItems(@RequestParam(defaultValue = "10") int threshold) {
+        return itemService.getLowStockItems(threshold);
+    }
 
-    // --- শুধুমাত্র নতুন আইটেম তৈরির জন্য ---
     @PostMapping
     public Item createItem(@RequestBody Item item) {
-        item.setUpdatedAt(LocalDateTime.now());
+        // নতুন আইটেম তৈরির সময় createdAt এবং updatedAt সেট করা হচ্ছে
+        LocalDateTime now = LocalDateTime.now();
+        item.setCreatedAt(now);
+        item.setUpdatedAt(now);
         Item savedItem = itemService.saveItem(item);
         eventPublisher.publishUpdate();
         return savedItem;
     }
 
-    // --- আইটেম আপডেট করার জন্য নতুন মেথড ---
     @PutMapping("/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable String id, @RequestBody Item itemDetails) {
         return itemService.getItemById(id).map(existingItem -> {
@@ -46,6 +52,9 @@ public class ItemController {
             existingItem.setSku(itemDetails.getSku());
             existingItem.setCategory(itemDetails.getCategory());
             existingItem.setQuantity(itemDetails.getQuantity());
+            // --- পরিবর্তন এখানে ---
+            // بما أن minQuantity একটি int, তাই null চেক করার প্রয়োজন নেই
+            existingItem.setMinQuantity(itemDetails.getMinQuantity());
             existingItem.setPrice(itemDetails.getPrice());
             existingItem.setSupplier(itemDetails.getSupplier());
             existingItem.setLocation(itemDetails.getLocation());
@@ -69,8 +78,21 @@ public class ItemController {
         List<Item> items = itemService.getAllItems();
         Map<String, Object> overview = new HashMap<>();
         overview.put("totalProducts", items.size());
-        overview.put("totalStockValue", items.stream().mapToDouble(i -> i.getPrice() * i.getQuantity()).sum());
-        overview.put("lowStockCount", items.stream().filter(i -> i.getQuantity() < 10).count());
+        
+        // --- পরিবর্তন এখানে ---
+        // بما أن price এবং quantity primitive, তাই null চেক করার প্রয়োজন নেই
+        double totalValue = items.stream()
+            .mapToDouble(i -> i.getPrice() * i.getQuantity())
+            .sum();
+        overview.put("totalStockValue", totalValue);
+        
+        // --- পরিবর্তন এখানে ---
+        // بما أن quantity এবং minQuantity primitive, তাই null চেক করার প্রয়োজন নেই
+        long lowStockCount = items.stream()
+            .filter(i -> i.getQuantity() <= i.getMinQuantity() && i.getQuantity() > 0)
+            .count();
+        overview.put("lowStockCount", lowStockCount);
+
         List<Item> sortedItems = items.stream()
             .filter(i -> i.getUpdatedAt() != null)
             .sorted(Comparator.comparing(Item::getUpdatedAt).reversed())

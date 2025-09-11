@@ -5,7 +5,6 @@ import com.supplychain.repository.ItemRepository;
 import com.supplychain.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +13,7 @@ import java.util.Optional;
  */
 @Service
 public class ItemServiceImpl implements ItemService {
+
     @Autowired
     private ItemRepository itemRepository;
 
@@ -39,7 +39,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<Item> getLowStockItems(int threshold) {
-        return itemRepository.findByQuantityLessThan(threshold);
+        // পরিবর্তিত মেথডটি এখানে কল করা হচ্ছে
+        return itemRepository.findByQuantityLessThanEqual(threshold);
     }
 
     @Override

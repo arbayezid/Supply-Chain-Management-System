@@ -8,6 +8,20 @@ import java.util.List;
  * Repository interface for Item entity operations
  */
 public interface ItemRepository extends MongoRepository<Item, String> {
-    List<Item> findByQuantityLessThan(int threshold); // Low stock
-    List<Item> findByQuantity(int quantity); // Out of stock
+
+    /**
+     * Finds items where the quantity is less than or equal to the given threshold.
+     * This is used for finding low stock items.
+     * @param threshold The stock quantity threshold.
+     * @return A list of items at or below the stock threshold.
+     */
+    List<Item> findByQuantityLessThanEqual(int threshold);
+
+    /**
+     * Finds items with an exact quantity.
+     * This is used for finding out-of-stock items (quantity = 0).
+     * @param quantity The exact stock quantity to find.
+     * @return A list of items with the specified stock quantity.
+     */
+    List<Item> findByQuantity(int quantity);
 }
