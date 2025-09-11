@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import ReactApexChart from "react-apexcharts";
 
+
 // Sample data
 const revenueData = [
   { date: "2025-09-01", amount: 1200, source: "Product Sales" },
@@ -22,6 +23,7 @@ const revenueData = [
   { date: "2025-09-04", amount: 900, source: "Consulting" },
   { date: "2025-09-05", amount: 1100, source: "Product Sales" },
 ];
+
 
 // Chart data
 const chartOptions = {
@@ -37,6 +39,7 @@ const chartSeries = [
     data: revenueData.map((d) => d.amount),
   },
 ];
+
 
 const RevenueOverview = () => (
   <Box p={3}>
@@ -84,6 +87,7 @@ const RevenueOverview = () => (
       </Grid>
     </Grid>
 
+
     {/* Chart */}
     <Paper sx={{ p: 3, mb: 4 }}>
       <Typography variant="h6" fontWeight="bold" mb={2}>
@@ -96,6 +100,7 @@ const RevenueOverview = () => (
         height={320}
       />
     </Paper>
+
 
     {/* Table */}
     <Paper sx={{ p: 3 }}>

@@ -24,6 +24,7 @@ const expensesData = [
   { date: "2025-09-05", amount: 300, category: "Maintenance" },
 ];
 
+
 // Chart data
 const chartOptions = {
   chart: { type: "donut", toolbar: { show: false } },
@@ -34,6 +35,7 @@ const chartOptions = {
 const chartSeries = chartOptions.labels.map(
   (cat) => expensesData.filter((d) => d.category === cat).reduce((sum, d) => sum + d.amount, 0)
 );
+
 
 const Expenses = () => (
   <Box p={3}>
@@ -93,6 +95,7 @@ const Expenses = () => (
         height={320}
       />
     </Paper>
+
 
     {/* Table */}
     <Paper sx={{ p: 3 }}>
