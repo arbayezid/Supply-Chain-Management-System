@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import {
   Box,
   Typography,
@@ -23,34 +25,47 @@ const categories = [
   "Sports",
 ];
 
-const AddItem = ({ onCancel, onSave }) => {
-  const [formData, setFormData] = useState({
+const AddItem = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const isEditing = !!id;
+  const [item, setItem] = useState({
     name: "",
     sku: "",
     category: "",
-    quantity: "",
-    minQuantity: "",
-    price: "",
+    quantity: 0,
+    price: 0,
     supplier: "",
     location: "",
   });
 
+  useEffect(() => {
+    if (isEditing) {
+      axios
+        .get(`/api/items/${id}`)
+        .then((res) => {
+          if (res.data) setItem(res.data);
+        })
+        .catch((err) => console.error("Failed to fetch item", err));
+    }
+  }, [id, isEditing]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setItem((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // You can call onSave(formData) or your API here
-    // For now, just log the data
-    console.log("New Item Data:", formData);
-    // Optionally, reset the form
-    setFormData({
-      name: "",
-      sku: "",
-      category: "",
-      quantity: "",
-      minQuantity: "",
-      price: "",
-      supplier: "",
-      location: "",
-    });
+
+    // আপডেটের জন্য PUT এবং তৈরির জন্য POST ব্যবহার করুন
+    const request = isEditing
+      ? axios.put(`/api/items/${id}`, item)
+      : axios.post("/api/items", item);
+
+    request
+      .then(() => navigate("/inventory"))
+      .catch((err) => console.error("Error saving item:", err));
   };
 
   return (
@@ -74,7 +89,7 @@ const AddItem = ({ onCancel, onSave }) => {
         }}
       >
         <Typography variant="h5" fontWeight={600} mb={3}>
-          Add New Inventory Item
+          {isEditing ? "Edit Item" : "Add New Inventory Item"}
         </Typography>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={3}>
@@ -82,10 +97,9 @@ const AddItem = ({ onCancel, onSave }) => {
               <TextField
                 fullWidth
                 label="Item Name"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
+                name="name"
+                value={item.name}
+                onChange={handleChange}
                 required
                 margin="normal"
               />
@@ -94,10 +108,9 @@ const AddItem = ({ onCancel, onSave }) => {
               <TextField
                 fullWidth
                 label="SKU"
-                value={formData.sku}
-                onChange={(e) =>
-                  setFormData({ ...formData, sku: e.target.value })
-                }
+                name="sku"
+                value={item.sku}
+                onChange={handleChange}
                 required
                 margin="normal"
               />
@@ -106,11 +119,10 @@ const AddItem = ({ onCancel, onSave }) => {
               <FormControl fullWidth margin="normal" required>
                 <InputLabel>Category</InputLabel>
                 <Select
-                  value={formData.category}
+                  name="category"
+                  value={item.category}
                   label="Category"
-                  onChange={(e) =>
-                    setFormData({ ...formData, category: e.target.value })
-                  }
+                  onChange={handleChange}
                 >
                   {categories.map((category) => (
                     <MenuItem key={category} value={category}>
@@ -125,29 +137,9 @@ const AddItem = ({ onCancel, onSave }) => {
                 fullWidth
                 label="Quantity"
                 type="number"
-                value={formData.quantity}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    quantity: e.target.value === "" ? "" : parseInt(e.target.value),
-                  })
-                }
-                required
-                margin="normal"
-              />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <TextField
-                fullWidth
-                label="Minimum Quantity"
-                type="number"
-                value={formData.minQuantity}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    minQuantity: e.target.value === "" ? "" : parseInt(e.target.value),
-                  })
-                }
+                name="quantity"
+                value={item.quantity}
+                onChange={handleChange}
                 required
                 margin="normal"
               />
@@ -157,13 +149,9 @@ const AddItem = ({ onCancel, onSave }) => {
                 fullWidth
                 label="Price"
                 type="number"
-                value={formData.price}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    price: e.target.value === "" ? "" : parseFloat(e.target.value),
-                  })
-                }
+                name="price"
+                value={item.price}
+                onChange={handleChange}
                 required
                 margin="normal"
                 InputProps={{
@@ -177,10 +165,9 @@ const AddItem = ({ onCancel, onSave }) => {
               <TextField
                 fullWidth
                 label="Supplier"
-                value={formData.supplier}
-                onChange={(e) =>
-                  setFormData({ ...formData, supplier: e.target.value })
-                }
+                name="supplier"
+                value={item.supplier}
+                onChange={handleChange}
                 required
                 margin="normal"
               />
@@ -189,10 +176,9 @@ const AddItem = ({ onCancel, onSave }) => {
               <TextField
                 fullWidth
                 label="Location"
-                value={formData.location}
-                onChange={(e) =>
-                  setFormData({ ...formData, location: e.target.value })
-                }
+                name="location"
+                value={item.location}
+                onChange={handleChange}
                 required
                 margin="normal"
               />
@@ -202,12 +188,12 @@ const AddItem = ({ onCancel, onSave }) => {
             <Button
               variant="text"
               color="primary"
-              onClick={onCancel ? onCancel : () => window.history.back()}
+              onClick={() => navigate("/inventory")}
             >
               Cancel
             </Button>
             <Button type="submit" variant="contained" color="primary">
-              Add Item
+              {isEditing ? "Update Item" : "Add Item"}
             </Button>
           </Stack>
         </form>
